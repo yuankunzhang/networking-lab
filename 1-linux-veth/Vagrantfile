@@ -1,0 +1,11 @@
+$script = <<SCRIPT
+echo "cd /vagrant" >> /home/vagrant/.bashrc
+SCRIPT
+
+Vagrant.configure(2) do |config|
+  config.vm.define "asia" do |asia|
+      asia.vm.box = "ubuntu/bionic64"
+      asia.vm.hostname = "1-linux-veth"
+      asia.vm.provision "shell", inline: $script
+  end
+end
